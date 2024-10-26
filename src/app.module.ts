@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from './auth/authmodule';
 @Module({
   imports: [
     ClientsModule,
@@ -24,4 +26,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [AppController],
   providers: [AppService],
 })
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      
+    }),
+    UsersModule, 
+    AuthModule,
+  ],
+})
+export class appmodule {}
+@Module({
+  imports: [AuthModule], 
+})
 export class AppModule {}
+
+
